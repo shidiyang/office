@@ -1,0 +1,139 @@
+section.section-account .img-backdrop {
+    background-position: center;
+    height: 0;
+}
+section.section-account .spacer {
+    display: block;
+    position: relative;
+}
+section.section-account .img-circle {
+    float: left;
+    right: 0;
+    border: 5px solid #ffffff;
+    margin-right: 20px;
+    width: 120px;
+    height: 120px;
+}
+@media (min-height: 500px) and (max-height: 700px) {
+    section.section-account .img-backdrop,
+    section.section-account .spacer {
+        height: 150px;
+    }
+    section.section-account .img-circle {
+        position: absolute;
+        top: -80px;
+        margin-right: 0;
+    }
+    section.section-account .img-backdrop {
+        -webkit-animation: backdrop-animation 0.8s ease-out;
+        -o-animation: backdrop-animation 0.8s ease-out;
+        animation: backdrop-animation 0.8s ease-out;
+        -webkit-animation: backdrop-animation 0.8s ease-out 1s ease-in;
+        -moz-animation: backdrop-animation 0.8s ease-out 1s ease-in;
+        -ms-animation: backdrop-animation 0.8s ease-out 1s ease-in;
+        -o-animation: backdrop-animation 0.8s ease-out 1s ease-in;
+        animation: backdrop-animation 0.8s ease-out 1s ease-in;
+    }
+    section.section-account .card-body {
+        -webkit-animation: box-animation 1s ease-out;
+        -o-animation: box-animation 1s ease-out;
+        animation: box-animation 1s ease-out;
+        -webkit-animation: box-animation 1s ease-out 1s ease-in;
+        -moz-animation: box-animation 1s ease-out 1s ease-in;
+        -ms-animation: box-animation 1s ease-out 1s ease-in;
+        -o-animation: box-animation 1s ease-out 1s ease-in;
+        animation: box-animation 1s ease-out 1s ease-in;
+    }
+}
+@media (min-height: 700px) {
+    section.section-account .img-backdrop,
+    section.section-account .spacer {
+        height: 300px;
+    }
+    section.section-account .img-circle {
+        position: absolute;
+        top: -80px;
+        margin-right: 0;
+    }
+    section.section-account .img-backdrop {
+        -webkit-animation: backdrop-animation 0.8s ease-out;
+        -o-animation: backdrop-animation 0.8s ease-out;
+        animation: backdrop-animation 0.8s ease-out;
+        -webkit-animation: backdrop-animation 0.8s ease-out 1s ease-in;
+        -moz-animation: backdrop-animation 0.8s ease-out 1s ease-in;
+        -ms-animation: backdrop-animation 0.8s ease-out 1s ease-in;
+        -o-animation: backdrop-animation 0.8s ease-out 1s ease-in;
+        animation: backdrop-animation 0.8s ease-out 1s ease-in;
+    }
+    section.section-account .card-body {
+        -webkit-animation: box-animation 1s ease-out;
+        -o-animation: box-animation 1s ease-out;
+        animation: box-animation 1s ease-out;
+        -webkit-animation: box-animation 1s ease-out 1s ease-in;
+        -moz-animation: box-animation 1s ease-out 1s ease-in;
+        -ms-animation: box-animation 1s ease-out 1s ease-in;
+        -o-animation: box-animation 1s ease-out 1s ease-in;
+        animation: box-animation 1s ease-out 1s ease-in;
+    }
+}
+.img-backdrop {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.img-backdrop img {
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+}
+.card {
+    position: relative;
+    margin-bottom: 24px;
+    background-color: #ffffff;
+    color: #313335;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+}
+.card:before,
+.card:after {
+    content: " ";
+    display: table;
+}
+.card:after {
+    clear: both;
+}
+
+.card-body {
+    padding: 24px;
+    position: relative;
+}
+.card-body:before,
+.card-body:after {
+    content: " ";
+    display: table;
+}
+.card-body:after {
+    clear: both;
+}
+.card-body:last-child {
+    border-radius: 0 0 2px 2px;
+}
+.contain-xs {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.card.style-transparent,
+.card .style-transparent {
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: inherit;
+}

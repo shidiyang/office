@@ -1,0 +1,47 @@
+/target/
+/bin/
+.idea*
+\.idea*
+*.iml
+
+# kdiff3 ignore
+*.orig
+
+# test
+/test-output
+
+# maven ignore
+target/
+src/test
+generator.properties
+generatorConfig.xml
+
+# eclipse ignore
+.settings/
+.externalToolBuilders/
+.project
+.classpath
+
+# idea ignore
+.idea/
+*.ipr
+*.iml
+*.iws
+
+# temp ignore
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+
+# system ignore
+.DS_Store
+Thumbs.db
+
+# package ignore (optional)
+# *.jar
+# *.war
+# *.zip
+# *.tar
+# *.tar.gz

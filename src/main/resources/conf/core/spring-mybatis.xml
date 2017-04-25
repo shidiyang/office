@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--MySQL-->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${redis_scheduler.driverClassName}"/>
+        <property name="url" value="${redis_scheduler.url}"/>
+        <property name="username" value="${redis_scheduler.username}"/>
+        <property name="password" value="${redis_scheduler.password}"/>
+        <!--maxActive: 最大连接数量-->
+        <property name="maxActive" value="${redis_scheduler.maxConnectionCount}"/>
+        <!--minIdle: 最小空闲连接-->
+        <property name="minIdle" value="${redis_scheduler.minConnectionCount}"/>
+        <!--maxIdle: 最大空闲连接-->
+        <property name="maxIdle" value="${redis_scheduler.maxIdleConnectionCount}"/>
+        <!--initialSize: 初始化连接-->
+        <property name="initialSize" value="${redis_scheduler.initialSizeConnectionCount}"/>
+        <!-- 连接被泄露时是否打印 -->
+        <property name="logAbandoned" value="${redis_scheduler.logAbandoned}"/>
+        <!--removeAbandoned: 是否自动回收超时连接-->
+        <property name="removeAbandoned"  value="${redis_scheduler.removeAbandoned}"/>
+        <!--removeAbandonedTimeout: 超时时间(以秒数为单位)-->
+        <property name="removeAbandonedTimeout" value="${redis_scheduler.removeAbandonedTimeout}"/>
+        <!--maxWait: 超时等待时间以毫秒为单位 1000等于60秒-->
+        <property name="maxWait" value="${redis_scheduler.maxWait}"/>
+        <property name="validationQuery" value="select 1"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:conf/core/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:conf/mybatis/*Mapper.xml" />
+        <property name="typeAliasesPackage" value="com.elong.hotel.jmis.model"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.elong.hotel.jmis.service.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 配置mybatis mapper接口 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.elong.hotel.jmis.service.dao"/>
+        <property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>

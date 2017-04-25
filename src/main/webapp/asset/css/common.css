@@ -1,0 +1,21 @@
+.navbar-nav > .user-menu > .dropdown-menu > .user-body {
+    padding: 5px 5px 5px 10px;
+    border-top: none;
+}
+
+.no-radius {
+    border-radius: 0px;
+}
+
+.margin-t-5 {
+    margin-top: 5px
+}
+
+.margin-t-10 {
+    margin-top: 10px
+}
+.control-label{
+    padding-left: 0px;
+    padding-right: 0px;
+    font-weight: normal;
+}
