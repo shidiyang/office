@@ -34,12 +34,12 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:conf/core/mybatis-config.xml"/>
-        <property name="mapperLocations" value="classpath:conf/mybatis/*Mapper.xml" />
-        <property name="typeAliasesPackage" value="com.elong.hotel.jmis.model"/>
+        <property name="mapperLocations" value="classpath:conf/mybatis/**/*Mapper.xml" />
+        <property name="typeAliasesPackage" value="com.lu.office.model"/>
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.elong.hotel.jmis.service.dao"/>
+        <property name="basePackage" value="com.lu.office.service.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
@@ -48,7 +48,7 @@
     </bean>
     <!-- 配置mybatis mapper接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.elong.hotel.jmis.service.dao"/>
+        <property name="basePackage" value="com.lu.office.service.dao"/>
         <property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate"/>
     </bean>
 

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lu.office.service.dao.sys.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.lu.office.model.sys.Menu" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="text" property="text" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="permission_id" property="permissionId" jdbcType="INTEGER" />
+    <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+    <collection property="children" column="Id" javaType="java.util.ArrayList"
+                select="selectChildren"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, text, parent_id, order_id, url, permission_id, image_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from menu
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lu.office.model.sys.Menu" >
+    insert into menu (Id, text, parent_id, 
+      order_id, url, permission_id, 
+      image_url)
+    values (#{id,jdbcType=INTEGER}, #{text,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
+      #{orderId,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{permissionId,jdbcType=INTEGER}, 
+      #{imageUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lu.office.model.sys.Menu" >
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="text != null" >
+        text,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="permissionId != null" >
+        permission_id,
+      </if>
+      <if test="imageUrl != null" >
+        image_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="text != null" >
+        #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionId != null" >
+        #{permissionId,jdbcType=INTEGER},
+      </if>
+      <if test="imageUrl != null" >
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lu.office.model.sys.Menu" >
+    update menu
+    <set >
+      <if test="text != null" >
+        text = #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionId != null" >
+        permission_id = #{permissionId,jdbcType=INTEGER},
+      </if>
+      <if test="imageUrl != null" >
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lu.office.model.sys.Menu" >
+    update menu
+    set text = #{text,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      permission_id = #{permissionId,jdbcType=INTEGER},
+      image_url = #{imageUrl,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectChildren" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from menu
+    where parent_id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="getAll" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from menu
+  </select>
+
+
+</mapper>
