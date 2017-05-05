@@ -122,12 +122,15 @@
     <include refid="Base_Column_List" />
     from menu
     where parent_id = #{id,jdbcType=INTEGER}
+    ORDER BY order_id
   </select>
 
   <select id="getAll" resultMap="BaseResultMap"  >
     select
     <include refid="Base_Column_List" />
     from menu
+    where parent_id = 0
+    ORDER BY order_id
   </select>
 
 

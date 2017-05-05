@@ -4,19 +4,13 @@
 <html lang="zh-CN">
     <@head title = title/>
 <body class="">
-<div class="" style="position:static;">
-    <div class="">
-        <section class="">
-            <h1>
-                <i class=""></i> Home
-                <small> ${title!}</small>
-            </h1>
-        </section>
-        <section class="">
-            <#nested />
-        </section>
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+    </div>
+    <div class="container-fluid">
+        <#nested />
     </div>
 </div>
 </body>
-
 </#macro>

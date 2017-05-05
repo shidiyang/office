@@ -1,30 +1,46 @@
-<!-- jQuery 2.2.3 -->
-<script src="/OfficeManage/asset/plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="/OfficeManage/asset/bootstrap/js/bootstrap.min.js"></script>
-<!-- Select2 -->
-<script src="/OfficeManage/asset/plugins/select2/select2.full.min.js"></script>
-<!-- bootstrap datepicker -->
-<script src="/OfficeManage/asset/plugins/datepicker/bootstrap-datepicker.js"></script>
-<!-- bootstrap time picker -->
-<script src="/OfficeManage/asset/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-<!-- iCheck 1.0.1 -->
-<script src="/OfficeManage/asset/plugins/iCheck/icheck.min.js"></script>
-<!-- isLoading -->
-<script src="/OfficeManage/asset/plugins/isLoading/jquery.isloading.min.js"></script>
-<!--WebUploader-->
-<script src="/OfficeManage/asset/plugins/webuploader/webuploader.min.js"></script>
-<!-- PACE -->
-<script src="/OfficeManage/asset/plugins/pace/pace.min.js"></script>
-<!-- SlimScroll -->
-<script src="/OfficeManage/asset/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="/OfficeManage/asset/plugins/fastclick/fastclick.js"></script>
-<!-- Admin App -->
-<script src="/OfficeManage/asset/js/app.min.js"></script>
-<!-- common -->
-<script src="/OfficeManage/asset/js/common.js"></script>
-<!-- page script -->
+<script src="/office/asset/matrix-admin/js/excanvas.min.js"></script>
+<script src="/office/asset/matrix-admin/js/jquery.min.js"></script>
+<script src="/office/asset/matrix-admin/js/jquery.ui.custom.js"></script>
+<script src="/office/asset/matrix-admin/js/bootstrap.min.js"></script>
+<script src="/office/asset/matrix-admin/js/jquery.flot.min.js"></script>
+<script src="/office/asset/matrix-admin/js/jquery.flot.resize.min.js"></script>
+<script src="/office/asset/matrix-admin/js/jquery.peity.min.js"></script>
+<script src="/office/asset/matrix-admin/js/fullcalendar.min.js"></script>
+<script src="/office/asset/matrix-admin/js/matrix.js"></script>
+<script src="/office/asset/matrix-admin/js/matrix.dashboard.js"></script>
+<script src="/office/asset/matrix-admin/js/jquery.gritter.min.js"></script>
+<script src="/office/asset/matrix-admin/js/matrix.interface.js"></script>
+<script src="/office/asset/matrix-admin/js/matrix.chat.js"></script>
+<script src="/office/asset/matrix-admin/js/jquery.validate.js"></script>
+<script src="/office/asset/matrix-admin/js/matrix.form_validation.js"></script>
+<script src="/office/asset/matrix-admin/js/jquery.wizard.js"></script>
+<script src="/office/asset/matrix-admin/js/jquery.uniform.js"></script>
+<script src="/office/asset/matrix-admin/js/select2.min.js"></script>
+<script src="/office/asset/matrix-admin/js/matrix.popover.js"></script>
+<script src="/office/asset/matrix-admin/js/jquery.dataTables.min.js"></script>
+<script src="/office/asset/matrix-admin/js/matrix.tables.js"></script>
+
 <script type="text/javascript">
-    $(document).ajaxStart(function(){Pace.restart();});
+    // This function is called from the pop-up menus to transfer to
+    // a different page. Ignore if the value returned is a null string:
+    function goPage (newURL) {
+
+        // if url is empty, skip the menu dividers and reset the menu selection to default
+        if (newURL != "") {
+
+            // if url is "-", it is this page -- reset the menu:
+            if (newURL == "-" ) {
+                resetMenu();
+            }
+            // else, send page to designated URL
+            else {
+                document.location.href = newURL;
+            }
+        }
+    }
+
+    // resets the menu selection upon entry to this page:
+    function resetMenu() {
+        document.gomenu.selector.selectedIndex = 2;
+    }
 </script>
