@@ -15,6 +15,16 @@ public class User {
 
     private Integer activity;
 
+    private UserRolesKey userRolesKey;
+
+    public UserRolesKey getUserRolesKey() {
+        return userRolesKey;
+    }
+
+    public void setUserRolesKey(UserRolesKey userRolesKey) {
+        this.userRolesKey = userRolesKey;
+    }
+
     public Integer getUserId() {
         return userId;
     }

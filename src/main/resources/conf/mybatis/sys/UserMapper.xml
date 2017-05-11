@@ -9,6 +9,8 @@
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="emall" property="emall" jdbcType="VARCHAR" />
     <result column="activity" property="activity" jdbcType="INTEGER" />
+    <association property="userRolesKey" column="user_id" javaType="com.lu.office.model.sys.UserRolesKey"
+                 select="com.lu.office.service.dao.sys.UserRolesMapper.getRoleByUserId"/>
   </resultMap>
   <sql id="Base_Column_List" >
     user_id, user_name, password, sex, phone, emall, activity
@@ -114,4 +116,12 @@
       activity = #{activity,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+  <select id="getOneByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from users
+    where user_name = #{userName} and activity = 1
+    limit 1
+  </select>
 </mapper>

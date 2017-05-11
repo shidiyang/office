@@ -15,7 +15,37 @@ public class Menu {
 
     private Integer permissionId;
 
+    private String permissionName;
+
     private String imageUrl;
+
+    private Integer menuId;
+
+    private Permission permission;
+
+    public Permission getPermission() {
+        return permission;
+    }
+
+    public void setPermission(Permission permission) {
+        this.permission = permission;
+    }
+
+    public Integer getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(Integer menuId) {
+        this.menuId = menuId;
+    }
+
+    public String getPermissionName() {
+        return permissionName;
+    }
+
+    public void setPermissionName(String permissionName) {
+        this.permissionName = permissionName;
+    }
 
     public List<Menu> getChildren() {
         return children;

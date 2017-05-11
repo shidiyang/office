@@ -1,6 +1,7 @@
 package com.lu.office.service.dao.sys;
 
 import com.lu.office.model.sys.User;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userId);
@@ -14,4 +15,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    User getOneByUserName(@Param("userName") String userName);
 }

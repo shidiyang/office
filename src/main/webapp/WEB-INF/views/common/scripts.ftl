@@ -19,6 +19,7 @@
 <script src="/office/asset/matrix-admin/js/matrix.popover.js"></script>
 <script src="/office/asset/matrix-admin/js/jquery.dataTables.min.js"></script>
 <script src="/office/asset/matrix-admin/js/matrix.tables.js"></script>
+<script src="/office/asset/js/index.js"></script>
 
 <script type="text/javascript">
     // This function is called from the pop-up menus to transfer to

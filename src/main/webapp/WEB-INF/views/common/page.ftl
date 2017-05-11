@@ -7,8 +7,8 @@
     <#if endPage gt totalPage>
         <#assign endPage = totalPage/>
     </#if>
-<div align="center" style="margin-top: 5px;">
-    <ul class="pagination no-margin">
+<div align="center" style="margin-top: 5px;" class="pagination alternate">
+    <ul>
         <#if totalCount gte 0>
             <li class="disabled"><span>总计${totalCount}条记录</span></li>
         </#if>

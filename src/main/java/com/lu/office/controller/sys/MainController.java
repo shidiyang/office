@@ -28,8 +28,6 @@ public class MainController {
                                 ) throws IOException {
          ModelAndView mv = new ModelAndView("sys/index");
          List<Menu> menus = menuService.getMenus();
-         String js=  JSON.toJSONString(menus);
-         System.out.println("这是一次调试"+js);
          mv.addObject("treeMenu",menus);
          return mv;
     }

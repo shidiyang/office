@@ -1,5 +1,6 @@
 package com.lu.office.service.regositoryimlp.sys;
 
+import com.lu.office.model.sys.User;
 import com.lu.office.service.dao.sys.UserMapper;
 import com.lu.office.service.repository.sys.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,4 +17,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Override
+    public User getOneByUserName(User user) {
+        User user1 = userMapper.getOneByUserName(user.getUserName());
+        return user1;
+    }
 }

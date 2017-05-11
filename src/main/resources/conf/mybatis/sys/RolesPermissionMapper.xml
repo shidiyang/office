@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lu.office.service.dao.sys.RolesPermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.lu.office.model.sys.RolesPermissionKey" >
+    <id column="role_id" property="roleId" jdbcType="INTEGER" />
+    <id column="permission_id" property="permissionId" jdbcType="INTEGER" />
+    <association property="permission" column="permission_id" javaType="com.lu.office.model.sys.Permission"
+                 select="com.lu.office.service.dao.sys.PermissionMapper.selectByPrimaryKey"/>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.lu.office.model.sys.RolesPermissionKey" >
+    delete from roles_permission
+    where role_id = #{roleId,jdbcType=INTEGER}
+      and permission_id = #{permissionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lu.office.model.sys.RolesPermissionKey" >
+    insert into roles_permission (role_id, permission_id)
+    values (#{roleId,jdbcType=INTEGER}, #{permissionId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lu.office.model.sys.RolesPermissionKey" >
+    insert into roles_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="permissionId != null" >
+        permission_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="permissionId != null" >
+        #{permissionId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

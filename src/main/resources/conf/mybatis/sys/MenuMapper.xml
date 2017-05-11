@@ -5,15 +5,18 @@
     <id column="Id" property="id" jdbcType="INTEGER" />
     <result column="text" property="text" jdbcType="VARCHAR" />
     <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="menu_id" property="menuId" jdbcType="INTEGER" />
     <result column="order_id" property="orderId" jdbcType="INTEGER" />
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="permission_id" property="permissionId" jdbcType="INTEGER" />
     <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
-    <collection property="children" column="Id" javaType="java.util.ArrayList"
+    <association property="permission" column="permission_id" javaType="com.lu.office.model.sys.Permission"
+                 select="com.lu.office.service.dao.sys.PermissionMapper.selectByPrimaryKey"/>
+    <collection property="children" column="menu_id" javaType="java.util.ArrayList"
                 select="selectChildren"/>
   </resultMap>
   <sql id="Base_Column_List" >
-    Id, text, parent_id, order_id, url, permission_id, image_url
+    Id, text, parent_id, order_id, url, permission_id, image_url,menu_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -28,10 +31,10 @@
   <insert id="insert" parameterType="com.lu.office.model.sys.Menu" >
     insert into menu (Id, text, parent_id, 
       order_id, url, permission_id, 
-      image_url)
+      image_url,menu_id)
     values (#{id,jdbcType=INTEGER}, #{text,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
       #{orderId,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{permissionId,jdbcType=INTEGER}, 
-      #{imageUrl,jdbcType=VARCHAR})
+      #{imageUrl,jdbcType=VARCHAR}),#{menuId,jdbcType=INTEGER}
   </insert>
   <insert id="insertSelective" parameterType="com.lu.office.model.sys.Menu" >
     insert into menu
@@ -44,6 +47,9 @@
       </if>
       <if test="parentId != null" >
         parent_id,
+      </if>
+      <if test="menuId != null" >
+        menu_id,
       </if>
       <if test="orderId != null" >
         order_id,
@@ -68,6 +74,9 @@
       <if test="parentId != null" >
         #{parentId,jdbcType=INTEGER},
       </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=INTEGER},
+      </if>
       <if test="orderId != null" >
         #{orderId,jdbcType=INTEGER},
       </if>
@@ -91,6 +100,9 @@
       <if test="parentId != null" >
         parent_id = #{parentId,jdbcType=INTEGER},
       </if>
+      <if test="menuId != null" >
+        parent_id = #{menuId,jdbcType=INTEGER},
+      </if>
       <if test="orderId != null" >
         order_id = #{orderId,jdbcType=INTEGER},
       </if>
@@ -111,6 +123,7 @@
     set text = #{text,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=INTEGER},
       order_id = #{orderId,jdbcType=INTEGER},
+      menu_id = #{menuId,jdbcType=INTEGER},
       url = #{url,jdbcType=VARCHAR},
       permission_id = #{permissionId,jdbcType=INTEGER},
       image_url = #{imageUrl,jdbcType=VARCHAR}
@@ -121,7 +134,7 @@
     select
     <include refid="Base_Column_List" />
     from menu
-    where parent_id = #{id,jdbcType=INTEGER}
+    where parent_id = #{menu_id,jdbcType=INTEGER}
     ORDER BY order_id
   </select>
 
@@ -133,5 +146,55 @@
     ORDER BY order_id
   </select>
 
+  <select id="getOneByPermissionId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from menu
+    where permission_id = #{permission_id,jdbcType=INTEGER}
+    limit 1
+  </select>
 
+  <select id="getAllCount" resultType="java.lang.Integer"  >
+    select
+    count(*)
+    from menu
+  </select>
+
+  <select id="getPage" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from menu
+    limit #{offSet},#{pageSize}
+  </select>
+
+  <select id="getAllCountByParentId" resultType="java.lang.Integer"  parameterType="java.lang.Integer"  >
+    select
+    count(*)
+    from menu
+    where parent_id = #{parentId}
+  </select>
+
+  <select id="getPageByParentId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from menu
+    where parent_id = #{parentId}
+    limit #{offSet},#{pageSize}
+  </select>
+
+  <select id="getOneByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from menu
+    where text = #{text}
+    limit 1
+  </select>
+
+  <select id="getOneByCont" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from menu
+    where 1 = 1 ${cont}
+    limit 1
+  </select>
 </mapper>

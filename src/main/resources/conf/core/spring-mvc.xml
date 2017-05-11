@@ -20,7 +20,7 @@
     <import resource="spring-freemarker.xml"/>
 
     <mvc:resources mapping="/asset/**" location="/asset/" cache-period="2592000"/>
-    <mvc:view-controller path="/" view-name="sys/html"/>
+    <mvc:view-controller path="/" view-name="login"/>
 
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
