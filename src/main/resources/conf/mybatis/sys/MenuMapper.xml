@@ -101,7 +101,7 @@
         parent_id = #{parentId,jdbcType=INTEGER},
       </if>
       <if test="menuId != null" >
-        parent_id = #{menuId,jdbcType=INTEGER},
+        menu_id = #{menuId,jdbcType=INTEGER},
       </if>
       <if test="orderId != null" >
         order_id = #{orderId,jdbcType=INTEGER},

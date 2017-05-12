@@ -22,4 +22,7 @@ public interface MenuService {
     Permission getPermissionByName(Menu menu);
 
     int saveOneMenu(Menu menu);
+
+    int deleteOneById(Integer id);
+
 }

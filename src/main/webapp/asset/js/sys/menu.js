@@ -107,3 +107,32 @@ function save(){
         }
     }, 'json');
 }
+
+function del(id) {
+    if (confirm('确定删除 ？ ')) {
+        $.post('/office/menu/del', {id:id}, function (data) {
+            if(data.state==0){
+                location.reload();
+                $.isLoading({text:"数据加载中，请稍后..."});
+                alert(data.mes);
+            }else{
+                alert(data.mes);
+            }
+        }, 'json');
+    }
+
+}
+
+function updat(id,menuId,text,parentId,orderId,imageUrl,url,permission) {
+    $('#add-modal').modal('show');
+    $('#id').val(id);
+    $('#menuId').val(menuId);
+    $('#text').val(text);
+    $('#parentId').val(parentId);
+    $('#orderId').val(orderId);
+    $('#imageUrl').val(imageUrl);
+    $('#url').val(url);
+    $('#permissionName').val(permission);
+    $("#mes").html("");
+}
+

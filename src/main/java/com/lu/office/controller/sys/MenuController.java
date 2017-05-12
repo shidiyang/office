@@ -75,4 +75,21 @@ public class MenuController {
         }
         return false;
     }
+
+    @RequestMapping("/del")
+    public @ResponseBody CheckSaveDto<Menu> delete(HttpServletRequest request,
+                                                   HttpServletResponse response,
+                                                   @RequestParam("id")Integer id){
+        CheckSaveDto<Menu> checkSaveDto = new CheckSaveDto<>();
+        int num = menuService.deleteOneById(id);
+        if(num >0){
+            checkSaveDto.setState(0);
+            checkSaveDto.setMes("删除成功.");
+            return checkSaveDto;
+        }else{
+            checkSaveDto.setState(1);
+            checkSaveDto.setMes("删除失败.");
+            return checkSaveDto;
+        }
+    }
 }

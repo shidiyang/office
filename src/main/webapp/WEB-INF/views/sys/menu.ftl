@@ -14,29 +14,29 @@
         <table class="table table-bordered data-table">
             <thead>
             <tr>
-                <th class="center">菜单ID</th>
-                <th class="center">菜单名称</th>
-                <th class="center">父ID</th>
-                <th class="center">排序</th>
-                <th class="center">图标</th>
-                <th class="center">URL</th>
-                <th class="center">权限名称</th>
-                <th class="center">操作</th>
+                <th>菜单ID</th>
+                <th>菜单名称</th>
+                <th>父ID</th>
+                <th>排序</th>
+                <th>图标</th>
+                <th>URL</th>
+                <th>权限名称</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>
                 <#if page?? && page.rows?? && page.rows?size gt 0>
                     <#list page.rows as row>
                     <tr class="gradeA">
-                        <td class="center">${(row.menuId)!}</td>
-                        <td class="center">${(row.text)!}</td>
-                        <td class="center">${(row.parentId)!}</td>
-                        <td class="center">${(row.orderId)!}</td>
-                        <td class="center"><i class="${(row.imageUrl)!}"></td>
-                        <td class="center">${(row.url)!}</td>
-                        <td class="center">${(row.permission.description)!}</td>
-                        <td class="center"><span style="cursor: pointer;" onclick="" class="label label-info"><i class="fa fa-edit"></i>修改</span>
-                            <span style="cursor: pointer;" onclick="" class="label label-info"><i class="fa fa-edit"></i>删除</span></td>
+                        <td>${(row.menuId)!}</td>
+                        <td>${(row.text)!}</td>
+                        <td>${(row.parentId)!}</td>
+                        <td>${(row.orderId)!}</td>
+                        <td><i class="${(row.imageUrl)!}"></td>
+                        <td>${(row.url)!}</td>
+                        <td>${(row.permission.description)!}</td>
+                        <td style="text-align:center" ><span style="cursor: pointer;" onclick="updat(${(row.id)!},${(row.menuId)!},'${(row.text)!}',${(row.parentId)!},${(row.orderId)!},'${(row.imageUrl)!}','${(row.url)!}','${(row.permission.description)!}')" class="label label-info"><i class="fa fa-edit"></i>修改</span>
+                            <span style="cursor: pointer;" onclick="del(${row.id})" class="label label-info"><i class="fa fa-edit"></i>删除</span></td>
                     </tr>
                     </#list>
                 <#else>
@@ -101,7 +101,7 @@
                                     <span style="padding-right:25px;">图标:</span>
                                 </td>
                                 <td>
-                                        <select name="imageUrl">
+                                        <select name="imageUrl" id="imageUrl">
                                             <option value='icon-adjust'>icon-adjust</option>
                                             <option value='icon-asterisk'>icon-asterisk</option>
                                             <option value='icon-ban-circle'>icon-ban-circle</option>

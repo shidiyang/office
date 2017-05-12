@@ -95,5 +95,12 @@ public class MenuServiceImpl implements MenuService {
         }
         return num;
     }
+
+    @Override
+    public int deleteOneById(Integer id) {
+        int num = menuMapper.deleteByPrimaryKey(id);
+        return num;
+    }
+
 }
 
