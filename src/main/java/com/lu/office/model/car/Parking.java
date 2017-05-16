@@ -1,5 +1,7 @@
 package com.lu.office.model.car;
 
+import com.lu.office.model.sys.User;
+
 import java.util.Date;
 
 public class Parking {
@@ -22,6 +24,16 @@ public class Parking {
     private Date rentTime;
 
     private String oprator;
+
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Integer getId() {
         return id;

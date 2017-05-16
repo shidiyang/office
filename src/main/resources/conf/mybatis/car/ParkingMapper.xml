@@ -12,6 +12,8 @@
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="rent_time" jdbcType="TIMESTAMP" property="rentTime" />
     <result column="oprator" jdbcType="VARCHAR" property="oprator" />
+    <association property="user" column="user_id" javaType="com.lu.office.model.car.Parking"
+                 select="com.lu.office.service.dao.sys.UserMapper.selectByPrimaryKey"/>
   </resultMap>
   <sql id="Base_Column_List">
     id, parking_id, adress, type, prince, prince_type, status, user_id, rent_time, oprator
@@ -149,4 +151,27 @@
       oprator = #{oprator,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getCountBycont" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select
+    count(*)
+    from parking
+    where 1 = 1 ${cont}
+  </select>
+
+  <select id="getPageListByCont" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from parking
+    where 1 = 1 ${cont}
+    limit #{offSet},#{pageSize}
+  </select>
+
+  <select id="getOneByCont" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from parking
+    where 1 = 1 ${cont}
+    limit 1
+  </select>
 </mapper>
