@@ -57,4 +57,19 @@
     set description = #{description,jdbcType=VARCHAR}
     where role_id = #{roleId,jdbcType=INTEGER}
   </update>
+
+  <select id="getAllRoles" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from roles
+    ORDER By role_id
+  </select>
+
+  <select id="getRoleByName" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from roles
+    where description = #{name,jdbcType=VARCHAR}
+    limit 1
+  </select>
 </mapper>

@@ -19,6 +19,7 @@
 <script src="/office/asset/matrix-admin/js/matrix.popover.js"></script>
 <script src="/office/asset/matrix-admin/js/jquery.dataTables.min.js"></script>
 <script src="/office/asset/matrix-admin/js/matrix.tables.js"></script>
+<script src="/office/asset/matrix-admin/js/jquery.isloading.min.js"></script>
 <script src="/office/asset/js/index.js"></script>
 
 <script type="text/javascript">

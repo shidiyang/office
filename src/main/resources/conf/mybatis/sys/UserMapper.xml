@@ -124,4 +124,33 @@
     where user_name = #{userName} and activity = 1
     limit 1
   </select>
+
+  <select id="getCountByCont" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select
+    count(*)
+    from users
+    where 1=1 ${cont}
+  </select>
+
+  <select id="getUserPageListByCont" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from users
+    where 1=1 ${cont}
+    limit #{offSet},#{pageSize}
+  </select>
+
+  <select id="getOneByUserNameOutId" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from users
+    where user_name = #{userName} and activity = 1 and user_id != #{userId}
+    limit 1
+  </select>
+
+  <select id="getMaxUserId" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select
+    max(user_id)
+    from users
+  </select>
 </mapper>

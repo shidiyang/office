@@ -45,4 +45,15 @@
     from user_roles
     where user_id = #{user_id,jdbcType=INTEGER}
   </select>
+
+  <insert id="insertOne" parameterType="com.lu.office.model.sys.UserRolesKey" >
+    insert into user_roles (user_id, role_id)
+    values (#{max,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER})
+  </insert>
+
+  <update id="updateOneByUserId" parameterType="com.lu.office.model.sys.User" >
+    update user_roles
+    set role_id = #{roleId,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
 </mapper>

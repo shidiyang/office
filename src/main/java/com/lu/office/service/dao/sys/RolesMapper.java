@@ -1,9 +1,12 @@
 package com.lu.office.service.dao.sys;
 
 import com.lu.office.model.sys.Roles;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface RolesMapper {
-    int deleteByPrimaryKey(Integer roleId);
+    int deleteByPrimaryKey(@Param("roleId") Integer roleId);
 
     int insert(Roles record);
 
@@ -14,4 +17,8 @@ public interface RolesMapper {
     int updateByPrimaryKeySelective(Roles record);
 
     int updateByPrimaryKey(Roles record);
+
+    List<Roles> getAllRoles();
+
+    Roles getRoleByName(@Param("name") String name);
 }

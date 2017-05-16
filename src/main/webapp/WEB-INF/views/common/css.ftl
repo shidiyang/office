@@ -7,4 +7,5 @@
 <link rel="stylesheet" href="/office/asset/matrix-admin/css/matrix-media.css" />
 <link href="/office/asset/matrix-admin/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="/office/asset/matrix-admin/css/jquery.gritter.css" />
+<link rel="stylesheet" href="/office/asset/matrix-admin/css/isloading.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>

@@ -7,6 +7,16 @@ public class RolesPermissionKey {
 
     private Permission permission;
 
+    private Roles roles;
+
+    public Roles getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Roles roles) {
+        this.roles = roles;
+    }
+
     public Permission getPermission() {
         return permission;
     }

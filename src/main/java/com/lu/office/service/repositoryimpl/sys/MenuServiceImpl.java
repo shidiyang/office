@@ -1,4 +1,4 @@
-package com.lu.office.service.regositoryimlp.sys;
+package com.lu.office.service.repositoryimpl.sys;
 
 import com.lu.office.model.sys.Menu;
 import com.lu.office.model.sys.Page;

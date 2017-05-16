@@ -3,6 +3,8 @@ package com.lu.office.service.dao.sys;
 import com.lu.office.model.sys.Permission;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface PermissionMapper {
     int deleteByPrimaryKey(Integer permissionId);
 
@@ -19,4 +21,6 @@ public interface PermissionMapper {
     Permission getOneByName(@Param("permissionName") String permissionName);
 
     Integer getMaxId();
+
+    List<Permission> getAllList();
 }

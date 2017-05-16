@@ -17,6 +17,16 @@ public class User {
 
     private UserRolesKey userRolesKey;
 
+    private Integer RoleId;
+
+    public Integer getRoleId() {
+        return RoleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        RoleId = roleId;
+    }
+
     public UserRolesKey getUserRolesKey() {
         return userRolesKey;
     }
