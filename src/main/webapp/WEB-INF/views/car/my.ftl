@@ -29,16 +29,7 @@
                     <tr class="gradeA">
                         <td>${(row.parkingId)!}</td>
                         <td>${(row.adress)!}</td>
-                        <td>
-                        <#if row.type==1>
-                            小型车位
-                        <#elseif row.type==2>
-                            中型车位
-                        <#elseif row.type==3>
-                            大型车位
-                        <#elseif row.type==4>
-                            超大型车位
-                        </#if></td>
+                        <td>${(row.type)!}</td>
                         <td>
                         <#if row.status == 1>
                             已租出
@@ -151,5 +142,5 @@
         </div>
     </div>
 </div>
-<script src="/office/asset/js/car/bash.js"></script>
+<script src="/office/asset/js/car/rent.js"></script>
 </@html>

@@ -35,8 +35,8 @@
                         <td><i class="${(row.imageUrl)!}"></td>
                         <td>${(row.url)!}</td>
                         <td>${(row.permission.description)!}</td>
-                        <td style="text-align:center" ><span style="cursor: pointer;" onclick="updat(${(row.id)!},${(row.menuId)!},'${(row.text)!}',${(row.parentId)!},${(row.orderId)!},'${(row.imageUrl)!}','${(row.url)!}','${(row.permission.description)!}')" class="label label-info"><i class="fa fa-edit"></i>修改</span>
-                            <span style="cursor: pointer;" onclick="del(${row.id})" class="label label-info"><i class="fa fa-edit"></i>删除</span></td>
+                        <td style="text-align:center" ><span style="cursor: pointer;" onclick="updat(${(row.id)!},${(row.menuId)!},'${(row.text)!}',${(row.parentId)!},${(row.orderId)!},'${(row.imageUrl)!}','${(row.url)!}','${(row.permission.description)!}')" class="badge badge-info"><i class="fa fa-edit"></i>修改</span>
+                            <span style="cursor: pointer;" onclick="del(${row.id})" class="badge badge-info"><i class="fa fa-edit"></i>删除</span></td>
                     </tr>
                     </#list>
                 <#else>

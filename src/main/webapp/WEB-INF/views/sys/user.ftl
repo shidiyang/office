@@ -38,8 +38,8 @@
                         <td>${(row.phone)!}</td>
                         <td>${(row.emall)!}</td>
                         <td>${(row.userRolesKey.role.description)!}</td>
-                        <td style="text-align:center" ><span style="cursor: pointer;" onclick="updat(${(row.userId)!},'${(row.userName)!}','${(row.password)!}',${(row.sex)!},'${(row.phone)!}','${(row.emall)!}')" class="label label-info"><i class="fa fa-edit"></i>修改</span>
-                            <span style="cursor: pointer;" onclick="del(${row.userId!})" class="label label-info"><i class="fa fa-edit"></i>删除</span></td>
+                        <td style="text-align:center" ><span style="cursor: pointer;" onclick="updat(${(row.userId)!},'${(row.userName)!}','${(row.password)!}',${(row.sex)!},'${(row.phone)!}','${(row.emall)!}')" class="badge badge-info"><i class="fa fa-edit"></i>修改</span>
+                            <span style="cursor: pointer;" onclick="del(${row.userId!})" class="badge badge-info"><i class="fa fa-edit"></i>删除</span></td>
                     </tr>
                     </#list>
                 <#else>

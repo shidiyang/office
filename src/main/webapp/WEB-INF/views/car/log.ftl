@@ -29,16 +29,7 @@
                     <tr class="gradeA">
                         <td>${(row.parkingId)!}</td>
                         <td>${(row.adress)!}</td>
-                        <td>
-                        <#if row.type==1>
-                            小型车位
-                        <#elseif row.type==2>
-                            中型车位
-                        <#elseif row.type==3>
-                            大型车位
-                        <#elseif row.type==4>
-                            超大型车位
-                        </#if></td>
+                        <td>${(row.type)!}</td>
                         <td>
                         <#if row.status == 1>
                             已租出
@@ -57,7 +48,7 @@
                             </#if></td>
                         <td>${(row.prince)!}</td>
                         <td style="text-align:center" ><span style="cursor: pointer;" onclick="updat(${(row.id)!},${(row.parkingId)!},'${(row.adress)!}','${(row.type)!}','${(row.princeType)!}','${(row.prince)!}')" class="badge badge-info"><i class="fa fa-edit"></i>修改</span>
-                            <span style="cursor: pointer;" onclick="del(${row.id})" class="badge badge-info"><i class="fa fa-edit"></i>删除</span></td>
+                            <span style="cursor: pointer;" onclick="del(${row.id})" class="label label-info"><i class="badge badge-info"></i>删除</span></td>
                     </tr>
                     </#list>
                 <#else>
@@ -151,5 +142,5 @@
         </div>
     </div>
 </div>
-<script src="/office/asset/js/car/bash.js"></script>
+<script src="/office/asset/js/car/rent.js"></script>
 </@html>

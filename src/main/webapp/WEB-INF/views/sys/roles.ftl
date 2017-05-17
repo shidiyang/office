@@ -25,7 +25,7 @@
                     <tr class="gradeA">
                         <td>${(row.roles.description)!}</td>
                         <td>${(row.permission.description)!}</td>
-                        <td style="text-align:center" > <span style="cursor: pointer;" onclick="del(${row.roleId!},${row.permissionId!})" class="label label-info"><i class="fa fa-edit"></i>删除</span></td>
+                        <td style="text-align:center" > <span style="cursor: pointer;" onclick="del(${row.roleId!},${row.permissionId!})" class="badge badge-info"><i class="fa fa-edit"></i>删除</span></td>
                     </tr>
                     </#list>
                 <#else>

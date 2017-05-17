@@ -11,10 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLDecoder;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -289,5 +286,102 @@ public class WebUtile {
         }
         return flag;
     }
+
+    /**
+     * 获取两个日期相差多久按时间
+     * @param fDate
+     * @param oDate
+     * @return
+     */
+    public static int hoursofTwo(Date fDate, Date oDate) {
+
+        if (null == fDate || null == oDate) {
+
+            return -1;
+
+        }
+
+        long intervalMilli = oDate.getTime() - fDate.getTime();
+
+        return (int) (intervalMilli / (60 * 60 * 1000))+1;
+
+    }
+
+
+    /**
+     * 获取两天只差按天
+     * @param fDate
+     * @param oDate
+     * @return
+     */
+    public static int daysOfTwo(Date fDate, Date oDate) {
+
+        Calendar aCalendar = Calendar.getInstance();
+
+        aCalendar.setTime(fDate);
+
+        int day1 = aCalendar.get(Calendar.DAY_OF_YEAR);
+
+        int year1 = aCalendar.get(Calendar.YEAR);
+
+        aCalendar.setTime(oDate);
+
+        int day2 = aCalendar.get(Calendar.DAY_OF_YEAR);
+
+        int year2 = aCalendar.get(Calendar.YEAR);
+
+        return (day2 - day1)+365*(year2-year1);
+
+    }
+
+    /**
+     * 获取两月只差
+     * @param fDate
+     * @param oDate
+     * @return
+     */
+    public static int monthesOfTwo(Date fDate, Date oDate) {
+
+        Calendar aCalendar = Calendar.getInstance();
+
+        aCalendar.setTime(fDate);
+
+        int month1 = aCalendar.get(Calendar.MONTH);
+
+        int year1 = aCalendar.get(Calendar.YEAR);
+
+        aCalendar.setTime(oDate);
+
+        int month2 = aCalendar.get(Calendar.MONTH);
+
+        int year2 = aCalendar.get(Calendar.YEAR);
+
+        return (month2 - month1)+12*(year2-year1);
+
+    }
+
+    /**
+     * 获取两年只差
+     * @param fDate
+     * @param oDate
+     * @return
+     */
+    public static int yearsOfTwo(Date fDate, Date oDate) {
+
+        Calendar aCalendar = Calendar.getInstance();
+
+        aCalendar.setTime(fDate);
+
+        int year1 = aCalendar.get(Calendar.YEAR);
+
+        aCalendar.setTime(oDate);
+
+        int year2 = aCalendar.get(Calendar.YEAR);
+
+        return year2-year1;
+
+    }
+
+
 
 }
