@@ -23,4 +23,8 @@ public interface ParkingMapper {
     List<Parking> getPageListByCont(@Param("offSet") int offSet,@Param("pageSize") int pageSize,@Param("cont") String cont);
 
     Parking getOneByCont(@Param("cont") String cont);
+
+    int getCountBycontWithName(@Param("cont") String cont);
+
+    List<Parking> getPageListByContWithName(@Param("offSet") int offSet,@Param("pageSize") int pageSize,@Param("cont") String cont);
 }

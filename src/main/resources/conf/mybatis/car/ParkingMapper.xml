@@ -174,4 +174,19 @@
     where 1 = 1 ${cont}
     limit 1
   </select>
+
+  <select id="getPageListByContWithName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    id, parking_id, adress, type, prince, prince_type, status, p.user_id as user_id, rent_time, oprator
+    from parking p LEFT JOIN users u ON (p.user_id = u.user_id)
+    where 1 = 1 ${cont}
+    limit #{offSet},#{pageSize}
+  </select>
+
+  <select id="getCountBycontWithName" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select
+    count(*)
+    from parking p LEFT JOIN users u ON (p.user_id = u.user_id)
+    where 1 = 1 ${cont}
+  </select>
 </mapper>

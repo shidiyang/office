@@ -23,4 +23,8 @@ public interface CarService {
     int recoverOne(Parking parking);
 
     Page<Parking> getPageList(int page, int pageSize, String keywork, Integer keyType);
+
+    Parking getOneParkingById(Integer id);
+
+    Page<Parking> getPageListByUserName(int page, int pageSize, String keyword, String userName);
 }

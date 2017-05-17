@@ -1,9 +1,11 @@
 package com.lu.office.service.repositoryimpl.car;
 
 import com.lu.office.model.car.Parking;
+import com.lu.office.model.car.ParkingRecord;
 import com.lu.office.model.sys.Page;
 import com.lu.office.model.sys.User;
 import com.lu.office.service.dao.car.ParkingMapper;
+import com.lu.office.service.dao.car.ParkingRecordMapper;
 import com.lu.office.service.dao.sys.UserMapper;
 import com.lu.office.service.repository.car.CarService;
 import com.lu.office.service.utile.WebUtile;
@@ -25,6 +27,9 @@ public class CarServiceImpl implements CarService{
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private ParkingRecordMapper parkingRecordMapper;
 
     @Override
     public Page<Parking> getPageList(int page, int pageSize, String keywork) {
@@ -90,6 +95,7 @@ public class CarServiceImpl implements CarService{
         parking.setUserId(user.getUserId());
         parking.setStatus(1);
         parking.setRentTime(new Date());
+        this.saveOneParkingRecord(parking);
         int num = parkingMapper.updateByPrimaryKeySelective(parking);
         return num;
     }
@@ -97,8 +103,9 @@ public class CarServiceImpl implements CarService{
     @Override
     public int recoverOne(Parking parking) {
         parking.setRentTime(new Date());
-        parking.setUserId(0);
         parking.setStatus(2);
+        this.saveOneParkingRecord(parking);
+        parking.setUserId(0);
         int num = parkingMapper.updateByPrimaryKeySelective(parking);
         return num;
     }
@@ -133,6 +140,39 @@ public class CarServiceImpl implements CarService{
         return parkingPage;
     }
 
+    @Override
+    public Parking getOneParkingById(Integer id) {
+        Parking parking = parkingMapper.selectByPrimaryKey(id);
+        return parking;
+    }
+
+    @Override
+    public Page<Parking> getPageListByUserName(int page, int pageSize, String keyword, String userName) {
+        keyword = keyword.trim();
+        StringBuffer cont = new StringBuffer(" and status = 1 and user_name = \'"+userName+"\'");
+        StringBuffer buffer1 = new StringBuffer(cont);
+        StringBuffer buffer2 = new StringBuffer(cont);
+        int offSet = (page-1)*pageSize;
+        int count = 0;
+        List<Parking> list = new ArrayList<>();
+        if(!"".equals(keyword)){
+            buffer1.append(" and parking_id = \'"+keyword+"\'");
+            count = parkingMapper.getCountBycontWithName(buffer1.toString());
+            list = parkingMapper.getPageListByContWithName(offSet,pageSize,cont.toString());
+            if(!"".equals(keyword) && count == 0){
+                buffer2.append(" and adress like \'%"+keyword+"%\'");
+                count = parkingMapper.getCountBycontWithName(buffer2.toString());
+                list = parkingMapper.getPageListByContWithName(offSet,pageSize,buffer2.toString());
+            }
+        }else{
+            count = parkingMapper.getCountBycontWithName(cont.toString());
+            list = parkingMapper.getPageListByContWithName(offSet,pageSize,cont.toString());
+        }
+        list = this.getTotal(list);
+        Page<Parking> parkingPage = new Page<>(list,page,pageSize,count);
+        return parkingPage;
+    }
+
     private List<Parking> getTotal(List<Parking> list){
         int size = list.size();
         Parking parking = null;
@@ -155,5 +195,19 @@ public class CarServiceImpl implements CarService{
             parking.setTotal(timeOfTwo*prince);
         }
         return list;
+    }
+
+    private int saveOneParkingRecord(Parking parking){
+        Parking parking1 = parkingMapper.selectByPrimaryKey(parking.getId());
+        ParkingRecord parkingRecord = new ParkingRecord();
+        parkingRecord.setAccount(parking.getTotal());
+        parkingRecord.setOperateTime(parking.getRentTime());
+        parkingRecord.setOprerator(parking.getOprator());
+        parkingRecord.setRentorId(parking.getUserId());
+        parkingRecord.setOperateType(parking.getStatus());
+        parkingRecord.setParkingId(parking1.getParkingId());
+        parkingRecord.setParkingAdress(parking1.getAdress());
+        int num = parkingRecordMapper.insertSelective(parkingRecord);
+        return num;
     }
 }

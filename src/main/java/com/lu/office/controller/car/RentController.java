@@ -84,11 +84,12 @@ public class RentController {
     public @ResponseBody CheckSaveDto<Parking> recover(HttpServletRequest request,
                                                        HttpServletResponse response,
                                                        @CookieValue("userName")String userName,
-                                                       @RequestParam("id") Integer id){
-        Parking parking = new Parking();
+                                                       @RequestParam("id") Integer id,
+                                                       @RequestParam("total")Integer total){
+        Parking parking = carService.getOneParkingById(id);
         CheckSaveDto<Parking> checkSaveDto = new CheckSaveDto<>();
         parking.setOprator(WebUtile.decodeBase64(userName));
-        parking.setId(id);
+        parking.setTotal(total);
         int num = carService.recoverOne(parking);
         if(num>0){
             checkSaveDto.setState(0);

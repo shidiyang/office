@@ -90,7 +90,7 @@
         </table>
     </div>
     <#if page?? && page.rows?? && page.rows?size gt 0>
-        <@pagination formUrl="/office/crent/list?page=%d&keyword=${keyword!}" currentPage=page.page totalPage=page.totalPage totalCount=page.total/>
+        <@pagination formUrl="/office/crent/list?page=%d&keyword=${keyword!}&keyType=${keyType!}" currentPage=page.page totalPage=page.totalPage totalCount=page.total/>
     </#if>
 
     <div class="modal fade hide"  data-keyboard="false" id="add-modal" aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

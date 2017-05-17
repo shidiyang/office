@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lu.office.service.dao.car.ParkingRecordMapper">
+  <resultMap id="BaseResultMap" type="com.lu.office.model.car.ParkingRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="oprerator" jdbcType="VARCHAR" property="oprerator" />
+    <result column="rentor_id" jdbcType="INTEGER" property="rentorId" />
+    <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
+    <result column="operate_type" jdbcType="INTEGER" property="operateType" />
+    <result column="account" jdbcType="INTEGER" property="account" />
+    <result column="parking_id" jdbcType="INTEGER" property="parkingId" />
+    <result column="parking_adress" jdbcType="VARCHAR" property="parkingAdress" />
+    <association property="rentor" column="rentor_id" javaType="com.lu.office.model.sys.User"
+                 select="com.lu.office.service.dao.sys.UserMapper.selectByPrimaryKey"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, oprerator, rentor_id, operate_time, operate_type, account, parking_id, parking_adress
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from parking_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from parking_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lu.office.model.car.ParkingRecord">
+    insert into parking_record (id, oprerator, rentor_id, 
+      operate_time, operate_type, account,
+      parking_id, parking_adress)
+    values (#{id,jdbcType=INTEGER}, #{oprerator,jdbcType=VARCHAR}, #{rentorId,jdbcType=INTEGER}, 
+      #{operateTime,jdbcType=TIMESTAMP}, #{operateType,jdbcType=INTEGER}, #{account,jdbcType=INTEGER},
+      #{parkingId,jdbcType=INTEGER}, #{parkingAdress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lu.office.model.car.ParkingRecord">
+    insert into parking_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="oprerator != null">
+        oprerator,
+      </if>
+      <if test="rentorId != null">
+        rentor_id,
+      </if>
+      <if test="operateTime != null">
+        operate_time,
+      </if>
+      <if test="operateType != null">
+        operate_type,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="parkingId != null">
+        parking_id,
+      </if>
+      <if test="parkingAdress != null">
+        parking_adress,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="oprerator != null">
+        #{oprerator,jdbcType=VARCHAR},
+      </if>
+      <if test="rentorId != null">
+        #{rentorId,jdbcType=INTEGER},
+      </if>
+      <if test="operateTime != null">
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateType != null">
+        #{operateType,jdbcType=INTEGER},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=INTEGER},
+      </if>
+      <if test="parkingId != null">
+        #{parkingId,jdbcType=INTEGER},
+      </if>
+      <if test="parkingAdress != null">
+        #{parkingAdress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lu.office.model.car.ParkingRecord">
+    update parking_record
+    <set>
+      <if test="oprerator != null">
+        oprerator = #{oprerator,jdbcType=VARCHAR},
+      </if>
+      <if test="rentorId != null">
+        rentor_id = #{rentorId,jdbcType=INTEGER},
+      </if>
+      <if test="operateTime != null">
+        operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateType != null">
+        operate_type = #{operateType,jdbcType=INTEGER},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=INTEGER},
+      </if>
+      <if test="parkingId != null">
+        parking_id = #{parkingId,jdbcType=INTEGER},
+      </if>
+      <if test="parkingAdress != null">
+        parking_adress = #{parkingAdress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lu.office.model.car.ParkingRecord">
+    update parking_record
+    set oprerator = #{oprerator,jdbcType=VARCHAR},
+      rentor_id = #{rentorId,jdbcType=INTEGER},
+      operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      operate_type = #{operateType,jdbcType=INTEGER},
+      account = #{account,jdbcType=INTEGER},
+      parking_id = #{parkingId,jdbcType=INTEGER},
+      parking_adress = #{parkingAdress,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getCountBycont" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select
+    count(*)
+    from parking_record
+    where 1=1 ${cont}
+  </select>
+
+  <select id="getPageListByCont" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from parking_record
+    where 1=1 ${cont}
+    ORDER BY operate_time DESC
+    limit #{offSet},#{pageSize}
+  </select>
+
+  <select id="getCountWithName" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select
+    count(*)
+    from parking_record LEFT JOIN users ON(rentor_id = user_id)
+    where 1=1 ${cont}
+  </select>
+
+  <select id="getPageListWithName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from parking_record LEFT JOIN users ON(rentor_id = user_id)
+    where 1=1 ${cont}
+    ORDER BY operate_time DESC
+    limit #{offSet},#{pageSize}
+  </select>
+</mapper>
