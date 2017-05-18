@@ -30,7 +30,7 @@ public class MyController {
                              @RequestParam(value = "keyword",defaultValue = "")String keyword,
                              @RequestParam(value = "page", defaultValue = "1") int page,
                              @CookieValue("userName")String userName,
-                             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize){
+                             @RequestParam(value = "pageSize", defaultValue = "15") int pageSize){
         ModelAndView mv = new ModelAndView("/car/my");
         Page<Parking> parkingPage = carService.getPageListByUserName(page,pageSize,keyword, WebUtile.decodeBase64(userName));
         mv.addObject("keyword",keyword);

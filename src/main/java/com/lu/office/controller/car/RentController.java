@@ -35,7 +35,7 @@ public class RentController {
                              @RequestParam(value = "keyword",defaultValue = "")String keywork,
                              @RequestParam(value = "keyType",defaultValue = "0")Integer keyType,
                              @RequestParam(value = "page", defaultValue = "1") int page,
-                             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize){
+                             @RequestParam(value = "pageSize", defaultValue = "15") int pageSize){
         ModelAndView mv = new ModelAndView("/car/rent");
         Page<Parking> parkingPage = carService.getPageList(page,pageSize,keywork,keyType);
         mv.addObject("page",parkingPage);

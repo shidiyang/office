@@ -32,7 +32,7 @@ public class UserController {
                                 HttpServletResponse response,
                                 @RequestParam(value = "keyword",defaultValue = "")String keywork,
                                 @RequestParam(value = "page", defaultValue = "1") int page,
-                                @RequestParam(value = "pageSize", defaultValue = "10") int pageSize){
+                                @RequestParam(value = "pageSize", defaultValue = "15") int pageSize){
         ModelAndView mv = new ModelAndView("/sys/user");
         Page<User> page1 = userService.getPageList(page,pageSize,keywork);
         List<Roles> roles = userService.getRolesList();

@@ -31,7 +31,7 @@ public class BashController {
                              HttpServletResponse response,
                              @RequestParam(value = "keyword",defaultValue = "")String keywork,
                              @RequestParam(value = "page", defaultValue = "1") int page,
-                             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize){
+                             @RequestParam(value = "pageSize", defaultValue = "15") int pageSize){
         ModelAndView mv = new ModelAndView("/car/bash");
         Page<Parking> parkingPage = carService.getPageList(page,pageSize,keywork);
         mv.addObject("page",parkingPage);

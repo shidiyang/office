@@ -32,7 +32,7 @@ public class RolesController {
                              HttpServletResponse response,
                              @RequestParam(value = "keyword",defaultValue = "")String keyword,
                              @RequestParam(value = "page", defaultValue = "1") int page,
-                             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize){
+                             @RequestParam(value = "pageSize", defaultValue = "15") int pageSize){
         ModelAndView mv = new ModelAndView("/sys/roles");
         Page<RolesPermissionKey> page1 = rolesSevice.getPageList(page,pageSize,keyword);
         List<Permission> list = rolesSevice.getPermissionList();

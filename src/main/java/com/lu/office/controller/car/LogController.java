@@ -29,7 +29,7 @@ public class LogController {
                              @RequestParam(value = "keyword",defaultValue = "")String keyword,
                              @RequestParam(value = "keyType",defaultValue = "0")Integer keyType,
                              @RequestParam(value = "page", defaultValue = "1") int page,
-                             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize){
+                             @RequestParam(value = "pageSize", defaultValue = "15") int pageSize){
         ModelAndView mv = new ModelAndView("/car/log");
         Page<ParkingRecord> parkingRecordPage = recordService.getRecordPageList(page,pageSize,keyword,keyType);
         mv.addObject("page",parkingRecordPage);
