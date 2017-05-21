@@ -40,8 +40,8 @@ $(document).ready(function() {
 
 	//------------- Toggle button  -------------//
 
-	$('.normal-toggle-button').toggleButtons();
-	$('.text-toggle-button').toggleButtons({
+	// $('.normal-toggle-button').toggleButtons();
+	 $('.text-toggle-button').toggleButtons({
 	    width: 140,
 	    label: {
 	        enabled: "ONLINE",
@@ -193,7 +193,7 @@ $('#stat5').sparkline(positive,{
 	type: 'bar'
 });
 
-$('#stat6').sparkline(positive, { 
+$('#stat6').sparkline(positive, {
 	width: 70,//Width of the chart - Defaults to 'auto' - May be any valid css width - 1.5em, 20px, etc (using a number without a unit specifier won't do what you want) - This option does nothing for bar and tristate chars (see barWidth)
 	height: 20,//Height of the chart - Defaults to 'auto' (line height of the containing tag)
 	lineColor: '#88bbc8',//Used by line and discrete charts to specify the colour of the line drawn as a CSS values string

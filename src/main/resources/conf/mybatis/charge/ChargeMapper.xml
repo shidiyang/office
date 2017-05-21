@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lu.office.service.dao.charge.ChargeMapper" >
+  <resultMap id="BaseResultMap" type="com.lu.office.model.charge.Charge" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="charge_name" property="chargeName" jdbcType="VARCHAR" />
+    <result column="charge_type" property="chargeType" jdbcType="INTEGER" />
+    <result column="prince" property="prince" jdbcType="INTEGER" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, charge_name, charge_type, prince, unit
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from charge
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from charge
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lu.office.model.charge.Charge" >
+    insert into charge (id, charge_name, charge_type, 
+      prince, unit)
+    values (#{id,jdbcType=INTEGER}, #{chargeName,jdbcType=VARCHAR}, #{chargeType,jdbcType=INTEGER}, 
+      #{prince,jdbcType=INTEGER}, #{unit,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lu.office.model.charge.Charge" >
+    insert into charge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="chargeName != null" >
+        charge_name,
+      </if>
+      <if test="chargeType != null" >
+        charge_type,
+      </if>
+      <if test="prince != null" >
+        prince,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="chargeName != null" >
+        #{chargeName,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        #{chargeType,jdbcType=INTEGER},
+      </if>
+      <if test="prince != null" >
+        #{prince,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lu.office.model.charge.Charge" >
+    update charge
+    <set >
+      <if test="chargeName != null" >
+        charge_name = #{chargeName,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null" >
+        charge_type = #{chargeType,jdbcType=INTEGER},
+      </if>
+      <if test="prince != null" >
+        prince = #{prince,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lu.office.model.charge.Charge" >
+    update charge
+    set charge_name = #{chargeName,jdbcType=VARCHAR},
+      charge_type = #{chargeType,jdbcType=INTEGER},
+      prince = #{prince,jdbcType=INTEGER},
+      unit = #{unit,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getCountByCont" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select
+    count(*)
+    from charge
+    where 1=1 ${cont}
+  </select>
+
+  <select id="getListByCont" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from charge
+    where 1=1 ${cont}
+    limit #{offSet},#{pageSize}
+  </select>
+
+  <select id="getOneByCont" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from charge
+    where 1=1 ${cont}
+    limit 1
+  </select>
+</mapper>

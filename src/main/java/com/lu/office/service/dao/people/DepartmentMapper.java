@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface DepartmentMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(@Param("id") Integer id);
 
     int insert(Department record);
 
@@ -23,4 +23,6 @@ public interface DepartmentMapper {
     List<Department> getPageListByCont(@Param("offSet") int offSet,@Param("pageSize") int pageSize,@Param("cont") String cont);
 
     Department getOneByCont(@Param("cont") String cont);
+
+    List<Department> getAllList();
 }
