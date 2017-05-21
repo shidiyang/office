@@ -154,6 +154,22 @@
     limit 1
   </select>
 
+  <select id="getListByIn" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from menu
+    where parent_id = 0 and permission_id IN ${cont}
+    ORDER BY order_id
+  </select>
+
+  <select id="getListByInWithFid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from menu
+    where parent_id = #{parentId} and permission_id IN ${cont}
+    ORDER BY order_id
+  </select>
+
   <select id="getAllCount" resultType="java.lang.Integer"  >
     select
     count(*)
@@ -164,6 +180,7 @@
     select
     <include refid="Base_Column_List" />
     from menu
+    ORDER BY menu_id
     limit #{offSet},#{pageSize}
   </select>
 
@@ -179,6 +196,7 @@
     <include refid="Base_Column_List" />
     from menu
     where parent_id = #{parentId}
+    ORDER BY order_id
     limit #{offSet},#{pageSize}
   </select>
 

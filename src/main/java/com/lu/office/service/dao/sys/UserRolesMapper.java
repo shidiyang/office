@@ -13,4 +13,6 @@ public interface UserRolesMapper {
     int insertOne(@Param("max") int max,@Param("roleId") Integer roleId);
 
     int updateOneByUserId(@Param("userId") Integer userId,@Param("roleId") Integer roleId);
+
+    Integer getRolesIdByUserId(@Param("userId") Integer userId);
 }

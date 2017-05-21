@@ -1,5 +1,6 @@
 package com.lu.office.service.repository.sys;
 
+import com.lu.office.model.sys.Menu;
 import com.lu.office.model.sys.Page;
 import com.lu.office.model.sys.Roles;
 import com.lu.office.model.sys.User;
@@ -21,4 +22,8 @@ public interface UserService {
     int deleteOneById(Integer id);
 
     List<Roles> getRolesList();
+
+    List<Menu> getMenus(User user);
+
+    User getOneByUserId(Integer userId);
 }

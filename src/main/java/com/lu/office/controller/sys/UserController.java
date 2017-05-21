@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -92,5 +93,57 @@ public class UserController {
             checkSaveDto.setMes("删除失败.");
             return checkSaveDto;
         }
+    }
+
+    @RequestMapping("/info")
+    public ModelAndView getInfo(HttpServletRequest request,
+                                HttpServletResponse response){
+        ModelAndView mv = new ModelAndView("/sys/info");
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        List<Roles> roles = userService.getRolesList();
+        mv.addObject("roles",roles);
+        mv.addObject("userInfo",user);
+        return mv;
+    }
+
+    @RequestMapping("/alterps")
+    public ModelAndView alterps(HttpServletRequest request,
+                                HttpServletResponse response){
+        ModelAndView mv = new ModelAndView("/sys/alterps");
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        mv.addObject("userInfo",user);
+        return mv;
+    }
+
+    @RequestMapping("/saveps")
+    public @ResponseBody boolean saveps(HttpServletRequest request,
+                                        HttpServletResponse response,
+                                        @RequestParam("userId")Integer userId,
+                                        @RequestParam("password")String password){
+        User user =userService.getOneByUserId(userId);
+        user.setPassword(password);
+        user.setRoleId(user.getUserRolesKey().getRoleId());
+        int num = userService.saveOne(user);
+        if(num > 0){
+            return true;
+        }
+        return false;
+    }
+
+    @RequestMapping("/checkps")
+    public @ResponseBody CheckSaveDto<User> checkps(HttpServletResponse response,
+                                                    HttpServletRequest request,
+                                                    @RequestParam("userId")Integer userId,
+                                                    @RequestParam("password")String password){
+        CheckSaveDto<User> checkSaveDto = new CheckSaveDto<>();
+        User user1 = userService.getOneByUserId(userId);
+        if(!user1.getPassword().equals(password)){
+            checkSaveDto.setState(1);
+            checkSaveDto.setMes("原密码输入错误...");
+            return checkSaveDto;
+        }
+        return checkSaveDto;
     }
 }

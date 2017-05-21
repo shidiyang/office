@@ -84,4 +84,11 @@
     where role_id = #{roleId} and permission_id = #{permissionId}
     limit 1
   </select>
+
+  <select id="getListByRolseId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from roles_permission
+    where role_id = #{rolseId}
+  </select>
 </mapper>

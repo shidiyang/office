@@ -31,4 +31,8 @@ public interface MenuMapper {
     Menu getOneByName(@Param("text") String text);
 
     Menu getOneByCont(@Param("cont") String cont);
+
+    List<Menu> getListByIn(@Param("cont") String cont);
+
+    List<Menu> getListByInWithFid(@Param("parentId") Integer parentId,@Param("cont") String cont);
 }

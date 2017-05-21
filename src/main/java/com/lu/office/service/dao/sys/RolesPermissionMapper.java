@@ -23,4 +23,6 @@ public interface RolesPermissionMapper {
     List<RolesPermissionKey> getPageListByRoleName(@Param("offSet") int offSet,@Param("pageSize") int pageSize, @Param("keyword") String keyword);
 
     RolesPermissionKey getOneByKey(@Param("roleId") Integer roleId,@Param("permissionId") Integer permissionId);
+
+    List<RolesPermissionKey> getListByRolseId(@Param("rolseId") Integer rolseId);
 }

@@ -1,12 +1,7 @@
 package com.lu.office.service.repositoryimpl.sys;
 
-import com.lu.office.model.sys.Page;
-import com.lu.office.model.sys.Roles;
-import com.lu.office.model.sys.User;
-import com.lu.office.model.sys.UserRolesKey;
-import com.lu.office.service.dao.sys.RolesMapper;
-import com.lu.office.service.dao.sys.UserMapper;
-import com.lu.office.service.dao.sys.UserRolesMapper;
+import com.lu.office.model.sys.*;
+import com.lu.office.service.dao.sys.*;
 import com.lu.office.service.repository.sys.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,6 +26,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRolesMapper userRolesMapper;
+
+    @Autowired
+    private RolesPermissionMapper rolesPermissionMapper;
+
+    @Autowired
+    private MenuMapper menuMapper;
 
     @Override
     public User getOneByUserName(User user) {
@@ -95,5 +96,31 @@ public class UserServiceImpl implements UserService {
         List<Roles> list = new ArrayList<>();
         list = rolesMapper.getAllRoles();
         return list;
+    }
+
+    @Override
+    public List<Menu> getMenus(User user) {
+        Integer rolseId = userRolesMapper.getRolesIdByUserId(user.getUserId());
+        List<RolesPermissionKey> list = rolesPermissionMapper.getListByRolseId(rolseId);
+        StringBuffer permissionIds = new StringBuffer("(");
+        for(int i=0 ;i<list.size();i++){
+            RolesPermissionKey rolesPermissionKey= list.get(i);
+            permissionIds.append(" "+rolesPermissionKey.getPermissionId()+",");
+        }
+        permissionIds.deleteCharAt(permissionIds.length()-1).append(")");
+        List<Menu> menus = new ArrayList<>();
+        menus = menuMapper.getListByIn(permissionIds.toString());
+        for(int i = 0;i<menus.size();i++){
+            Menu menu = menus.get(i);
+            List<Menu> menus1 = menuMapper.getListByInWithFid(menu.getMenuId(),permissionIds.toString());
+            menu.setChildren(menus1);
+        }
+        return menus;
+    }
+
+    @Override
+    public User getOneByUserId(Integer userId) {
+        User user = userMapper.selectByPrimaryKey(userId);
+        return user;
     }
 }

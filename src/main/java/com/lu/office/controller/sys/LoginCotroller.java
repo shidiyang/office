@@ -1,6 +1,7 @@
 package com.lu.office.controller.sys;
 
 import com.lu.office.controller.dto.CheckSaveDto;
+import com.lu.office.model.sys.Menu;
 import com.lu.office.model.sys.User;
 import com.lu.office.service.repository.sys.UserService;
 import com.lu.office.service.utile.WebUtile;
@@ -17,6 +18,8 @@ import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by user on 5/4/17.
@@ -26,6 +29,13 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginCotroller {
     @Autowired
     private UserService userService;
+
+    @RequestMapping("/list")
+    public ModelAndView list(HttpServletRequest request,
+                             HttpServletResponse response){
+        ModelAndView mv = new ModelAndView("login");
+        return mv;
+    }
 
     @RequestMapping("/check")
     public @ResponseBody CheckSaveDto<User> check(HttpServletRequest request,
@@ -50,9 +60,26 @@ public class LoginCotroller {
                 cookie.setMaxAge( 24 * 60 * 60);// 设置为1天
                 cookie.setPath("/");
                 response.addCookie(cookie);
+
+                HttpSession session = request.getSession();
+                session.setAttribute("user",user1);
+                List<Menu> menus = userService.getMenus(user1);
+                session.setAttribute("menus",menus);
                 return dto;
             }
         }
+    }
+
+    @RequestMapping("/out")
+    public ModelAndView logout(HttpServletRequest request,
+                       HttpServletResponse response){
+        ModelAndView mv = new ModelAndView("login");
+        request.getSession().invalidate();
+        Cookie   userName = new Cookie("mycookie",null);
+        userName.setMaxAge(0);
+        userName.setPath("/");
+        response.addCookie(userName);
+        return mv;
     }
 
 
