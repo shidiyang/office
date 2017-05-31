@@ -27,4 +27,8 @@ public interface UserMapper {
     User getOneByUserNameOutId(@Param("userName") String userName,@Param("userId") Integer userId);
 
     int getMaxUserId();
+
+    User getOneByEmail(@Param("mailName") String mailName);
+
+    User getOneByCont(@Param("cont") String cont);
 }

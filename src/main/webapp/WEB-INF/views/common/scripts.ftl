@@ -20,29 +20,8 @@
 <script src="/office/asset/matrix-admin/js/jquery.dataTables.min.js"></script>
 <script src="/office/asset/matrix-admin/js/matrix.tables.js"></script>
 <script src="/office/asset/matrix-admin/js/jquery.isloading.min.js"></script>
-
-<#--<script src="js/jquery.min.js"></script>-->
-<#--<script src="js/jquery.ui.custom.js"></script>-->
-<#--<script src="js/bootstrap.min.js"></script>-->
-<#--<script src="js/bootstrap-colorpicker.js"></script>-->
-<#--<script src="js/bootstrap-datepicker.js"></script>-->
-<#--<script src="js/jquery.toggle.buttons.html"></script>-->
-<#--<script src="js/masked.js"></script>-->
-<#--<script src="js/jquery.uniform.js"></script>-->
-<#--<script src="js/select2.min.js"></script>-->
-<#--<script src="js/matrix.js"></script>-->
-<#--<script src="js/matrix.form_common.js"></script>-->
-<#--<script src="js/wysihtml5-0.3.0.js"></script>-->
-<#--<script src="js/jquery.peity.min.js"></script>-->
-<#--<script src="js/bootstrap-wysihtml5.js"></script>-->
-
-<script src="/office/asset/matrix-admin/js/bootstrap-colorpicker.js"></script>
 <script src="/office/asset/matrix-admin/js/bootstrap-datepicker.js"></script>
-<script src="/office/asset/matrix-admin/js/jquery.toggle.buttons.html"></script>
-<script src="/office/asset/matrix-admin/js/masked.js"></script>
-<script src="/office/asset/matrix-admin/js/matrix.form_common.js"></script>
-<script src="/office/asset/matrix-admin/js/wysihtml5-0.3.0.js"></script>
-<script src="/office/asset/matrix-admin/js/bootstrap-wysihtml5.js"></script>
+
 <script src="/office/asset/js/index.js"></script>
 
 <script type="text/javascript">

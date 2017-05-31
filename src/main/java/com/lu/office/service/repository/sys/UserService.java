@@ -26,4 +26,8 @@ public interface UserService {
     List<Menu> getMenus(User user);
 
     User getOneByUserId(Integer userId);
+
+    User getOneUserByEmail(String mailName);
+
+    User getOneUserByEmail(User user);
 }

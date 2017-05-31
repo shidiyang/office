@@ -6,6 +6,7 @@ import com.lu.office.model.sys.Page;
 import com.lu.office.service.dao.people.DepartmentMapper;
 import com.lu.office.service.dao.people.StaffMapper;
 import com.lu.office.service.repository.people.StaffService;
+import com.lu.office.service.utile.WebUtile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -67,6 +68,12 @@ public class StaffServiceImpl implements StaffService{
     public int saveOrUpdateOne(Staff staff) {
         Integer id = staff.getId();
         int num = 0;
+        try {
+            staff.setBirthday(WebUtile.dateTranst(staff.getBirthdayStr()));
+            staff.setStartTime(WebUtile.dateTranst(staff.getStartTimeStr()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         staff.setActivity(1);
         if(id == null){
             num = staffMapper.insertSelective(staff);
@@ -84,5 +91,16 @@ public class StaffServiceImpl implements StaffService{
         staff.setId(id);
         num = staffMapper.updateByPrimaryKeySelective(staff);
         return num;
+    }
+
+    @Override
+    public Staff getOneByStaffIdWithId(Staff staff) {
+        Integer id = staff.getId();
+        StringBuffer sql = new StringBuffer(" and activity = 1 and staff_id = "+staff.getStaffId());
+        if(id != null){
+            sql.append(" and id !="+id);
+        }
+        Staff staff1 = staffMapper.getOneByCont(sql.toString());
+        return staff1;
     }
 }

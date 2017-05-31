@@ -27,6 +27,7 @@
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/login/**"/>
+            <mvc:exclude-mapping path="/login2/**"/>
             <mvc:exclude-mapping path="/asset/**"/>
             <bean id="loginInterceptor" class="com.lu.office.interceptor.CommenInterceptor"/>
         </mvc:interceptor>

@@ -32,6 +32,13 @@
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
+                            <span class="add-on bg_lb"><i class="icon-edit"></i></span><input type="text" id="code" name="code" placeholder="验证码" /><img class="img_pos" src="http://localhost:8088/office/login2/code">
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="main_input_box">
                             <span id="mes"></span>
                         </div>
                     </div>
@@ -43,16 +50,30 @@
             </form>
             <form id="recoverform" action="#" class="form-vertical">
 				<p class="normal_text">请输入您的邮箱我们将通过邮件的方式帮您找回密码.</p>
-				
+                <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
-                            <span class="add-on bg_lo"><i class="icon-envelope"></i></span><input type="text" placeholder="邮箱" />
+                            <span class="add-on bg_lo"><i class="icon-envelope"></i></span><input type="text" id="mail_name" name="mail_name" placeholder="邮箱" />
                         </div>
                     </div>
-               
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <span class="add-on bg_lb"><i class="icon-edit"></i></span><input type="text" id="find_code" name="find_code" placeholder="验证码" /><img class="img_pos" alt="看不清楚，换一张" src="http://localhost:8088/office/login2/code">
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <span id="fine_mes"></span>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-actions">
                     <span class="pull-left"><a href="#" class="flip-link btn btn-success" id="to-login">&laquo; 返回 登陆</a></span>
-                    <span class="pull-right"><a class="btn btn-info"/>找回</a></span>
+                    <span class="pull-right"><a class="btn btn-info" href="#" id="find_passwd"/>找回</a></span>
                 </div>
             </form>
         </div>

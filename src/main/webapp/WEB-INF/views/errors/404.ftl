@@ -1,15 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>ErrorPage</title>
-</head>
-<body>
-	<div align="center">
-			<img style="cursor:'hand'" width="25%" height="50%" src="${rc.contextPath}/resources/image/errors/404.jpg"  />
-	</div>
-	<div style="display:none;">
-		<label>ErrorMsg:${exception}.getMessage()</label>
-	</div>
-</body>
-</html>
+<#include "../common/html.ftl"/>
+<@html title="车位租借">
+<div class="widget-box">
+    <div id="content-header">
+        <h1>Error 404</h1>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
+                        <h5>Error 404</h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="error_ex">
+                            <h1>404</h1>
+                            <h3>Opps, You're lost.</h3>
+                            <p>We can not find the page you're looking for.</p>
+                            <#--<a class="btn btn-warning btn-big"  href="index.html">Back to Home</a> </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</@html>

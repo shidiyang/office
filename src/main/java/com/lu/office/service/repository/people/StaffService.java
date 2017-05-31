@@ -19,4 +19,6 @@ public interface StaffService {
     int saveOrUpdateOne(Staff staff);
 
     int deleteOneById(Integer id);
+
+    Staff getOneByStaffIdWithId(Staff staff);
 }

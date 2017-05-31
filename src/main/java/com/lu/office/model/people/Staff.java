@@ -15,6 +15,8 @@ public class Staff {
 
     private Date birthday;
 
+    private String birthdayStr;
+
     private String phone;
 
     private String email;
@@ -31,11 +33,29 @@ public class Staff {
 
     private Date startTime;
 
+    private String startTimeStr;
+
     private String imageUrl;
 
     private Integer activity;
 
     private Department department;
+
+    public String getBirthdayStr() {
+        return birthdayStr;
+    }
+
+    public void setBirthdayStr(String birthdayStr) {
+        this.birthdayStr = birthdayStr;
+    }
+
+    public String getStartTimeStr() {
+        return startTimeStr;
+    }
+
+    public void setStartTimeStr(String startTimeStr) {
+        this.startTimeStr = startTimeStr;
+    }
 
     public Department getDepartment() {
         return department;

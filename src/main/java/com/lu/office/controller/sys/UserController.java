@@ -64,6 +64,7 @@ public class UserController {
             checkSaveDto.setMes("电话格式存在问题,请修改后添加.");
             return checkSaveDto;
         }
+        user1 = userService.getOneUserByEmail(user);
         return checkSaveDto;
     }
 

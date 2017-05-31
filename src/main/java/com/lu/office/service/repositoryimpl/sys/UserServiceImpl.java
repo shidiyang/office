@@ -123,4 +123,21 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.selectByPrimaryKey(userId);
         return user;
     }
+
+    @Override
+    public User getOneUserByEmail(String mailName) {
+        User user = userMapper.getOneByEmail(mailName);
+        return user;
+    }
+
+    @Override
+    public User getOneUserByEmail(User user) {
+        Integer userId = user.getUserId();
+        StringBuffer sql = new StringBuffer(" and emall = \'"+user.getEmall()+"\' and activity = 1");
+        if(userId != null){
+            sql.append(" and user_id !="+userId);
+        }
+        User user1 = userMapper.getOneByCont(sql.toString());
+        return user1;
+    }
 }

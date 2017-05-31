@@ -23,4 +23,6 @@ public interface StaffMapper {
     List<Staff> getListByCont(@Param("offSet") int offSet,@Param("pageSize") int pageSize,@Param("cont") String cont);
 
     Staff getOneByStaffId(@Param("staffId") Integer staffId);
+
+    Staff getOneByCont(@Param("cont") String cont);
 }

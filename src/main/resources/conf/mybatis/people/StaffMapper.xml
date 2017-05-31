@@ -241,7 +241,15 @@
     select
     <include refid="Base_Column_List" />
     from staff
-    where |staff_id = #{staffId} and activity = 1
+    where staff_id = #{staffId} and activity = 1
+    limit 1
+  </select>
+
+  <select id="getOneByCont" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from staff
+    where 1 = 1 ${cont}
     limit 1
   </select>
 

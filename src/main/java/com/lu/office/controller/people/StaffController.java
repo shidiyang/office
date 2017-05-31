@@ -48,7 +48,7 @@ public class StaffController {
                                      HttpServletResponse response,
                                      Staff staff) throws ParseException {
         CheckSaveDto<Staff> checkSaveDto = new CheckSaveDto<>();
-        Staff staff1 = staffService.getOneByStaffId(staff);
+        Staff staff1 = staffService.getOneByStaffIdWithId(staff);
         if(staff1 != null){
             checkSaveDto.setState(1);
             checkSaveDto.setMes(staff.getStaffId()+" :已经存在,请修改后添加.");
@@ -85,6 +85,7 @@ public class StaffController {
         return false;
     }
 
+    @RequestMapping("/del")
     public @ResponseBody CheckSaveDto<Staff> delete(HttpServletRequest request,
                                                     HttpServletResponse response,
                                                     @RequestParam("id")Integer id){

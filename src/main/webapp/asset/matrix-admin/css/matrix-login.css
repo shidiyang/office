@@ -54,6 +54,7 @@ body { background-color:#2E363F;    padding: 0;    margin-top:10%;}
 #loginbox .main_input_box input{ height:30px; border:0px; display:inline-block; width:75%; line-height:28px;  margin-bottom:3px;}
 #loginbox .controls{ padding:0 20px;}
 #loginbox .control-group{ padding:20px 0; margin-bottom:0px;}
+.img_pos{ position: relative; left:120px; top:-36px;}
 .form-vertical, .form-actions {  margin-bottom: 0; background:none; border-top:1px solid #3f4954; }
 #loginbox .normal_text{ padding:15px 10px; text-align:center; font-size:14px; line-height:20px; background:#2E363F; color:#fff; }
 @media (max-width:800px){

@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="/office/asset/matrix-admin/css/isloading.css" />
 
 <link rel="stylesheet" href="/office/asset/matrix-admin/css/colorpicker.css" />
-<link rel="stylesheet" href="/office/asset/matrix-admin/css/datepicker.css" />
 <link rel="stylesheet" href="/office/asset/matrix-admin/css/uniform.css" />
 <link rel="stylesheet" href="/office/asset/matrix-admin/css/select2.css" />
 <link rel="stylesheet" href="/office/asset/matrix-admin/css/bootstrap-wysihtml5.css" />

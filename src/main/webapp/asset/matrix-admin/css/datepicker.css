@@ -5,6 +5,8 @@
 	http://www.apache.org/licenses/LICENSE-2.0
 */
  .datepicker {
+	 position:relative;
+	 z-index: 9999;
 	top: 0;
 	left: 0;
 	padding: 4px;

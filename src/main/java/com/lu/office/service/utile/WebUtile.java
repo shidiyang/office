@@ -545,4 +545,19 @@ public class WebUtile {
         }
     }
 
+    //日期格式化
+    public static Date dateTranst(String date) throws Exception{
+        Date d = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        return d;
+    }
+
+    //日期格式化并增加一天
+    public static Date dateTranstAndAddOneDay(String date) throws Exception{
+        Date d = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        Calendar   calendar   =   new   GregorianCalendar();
+        calendar.setTime(d);
+        calendar.add(calendar.DATE,1);//把日期往后增加一天.整数往后推,负数往前移动
+        d=calendar.getTime();   //这个时间就是日期往后推一天的结果
+        return d;
+    }
 }

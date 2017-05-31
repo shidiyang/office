@@ -1,28 +1,21 @@
-
 $('#add').click(function () {
     $('#add-modal').modal('show');
     $('input').val("");
     $('textarea').val("");
+    $("#save").show();
+    $("#title-candle").html("增加员工");
+    $("input,select").removeAttrs("disabled");
+
 });
 
-// $('.date').datepicker({
-//     language: 'zh-CN',//显示中文
-//     format: 'yyyy-mm-dd',//显示格式
-//     minView: "month",//设置只显示到月份
-//     initialDate: new Date(),//初始化当前日期
-//     autoclose: true,//选中自动关闭
-//     todayBtn: true//显示今日按钮
-// });
-
-$('#birthday').datepicker({
-    show: true,
-    format: 'yyyy-mm-dd',
-    language: 'zh-CN',
-    weekStart: 1,
-    autoclose: true,
-    orientation:'right',
-    todayBtn:'linked'
-
+//
+$('.date').datepicker({
+    language: 'zh-CN',//显示中文
+    format: 'yyyy-mm-dd',//显示格式
+    minView: "month",//设置只显示到月份
+    initialDate: new Date(),//初始化当前日期
+    autoclose: true,//选中自动关闭
+    todayBtn: true//显示今日按钮
 });
 
 $('input').focus(function(){
@@ -36,6 +29,7 @@ $('#save').click(function () {
 function save_check(){
     var staffId = $("#staffId").val().trim();
     var staffName = $("#staffName").val().trim();
+    var birthdayStr = $("#birthdayStr").val().trim();
     var identityId = $("#identityId").val().trim();
     var phone = $("#phone").val().trim();
     var email = $("#email").val().trim();
@@ -43,12 +37,17 @@ function save_check(){
     var currentAdress = $("#currentAdress").val().trim();
     var nativePlace = $("#nativePlace").val().trim();
     var politicalBackground = $("#politicalBackground").val().trim();
+    var startTimeStr = $("#startTimeStr").val().trim();
     if(staffId ==''){
         $("#mes").html("请填写'员工编号'后再提交...").css("color","red");
         return false;
     }
     if(staffName ==''){
         $("#mes").html("请填写'员工姓名'后再提交...").css("color","red");
+        return false;
+    }
+    if(birthdayStr ==''){
+        $("#mes").html("请填写'生日'后再提交...").css("color","red");
         return false;
     }
     if(identityId ==''){
@@ -74,8 +73,13 @@ function save_check(){
     if(nativePlace ==''){
         $("#mes").html("请填写'籍贯'后再提交...").css("color","red");
         return false;
-    }if(politicalBackground ==''){
+    }
+    if(politicalBackground ==''){
         $("#mes").html("请填写'政治背景'后再提交...").css("color","red");
+        return false;
+    }
+    if(startTimeStr ==''){
+        $("#mes").html("请填写'入职时间'后再提交...").css("color","red");
         return false;
     }
 
@@ -125,11 +129,45 @@ function del(id) {
 
 }
 
-function updat(id,departmentName,description) {
+function updat(id,staffId,staffName,birthdayStr,identityId,phone,email,nation,currentAdress,nativePlace,politicalBackground,startTimeStr) {
     $('#add-modal').modal('show');
+    $("#save").show();
+    $("#title-candle").html("员工修改");
+    $("input,select").removeAttrs("disabled");
     $('#id').val(id);
-    $('#departmentName').val(departmentName);
-    $('#description').val(description);
+    $('#staffId').val(staffId);
+    $('#staffName').val(staffName);
+    $('#birthdayStr').val(birthdayStr);
+    $('#identityId').val(identityId);
+    $('#phone').val(phone);
+    $('#email').val(email);
+    $('#nation').val(nation);
+    $('#currentAdress').val(currentAdress);
+    $('#nativePlace').val(nativePlace);
+    $('#politicalBackground').val(politicalBackground);
+    $('#startTimeStr').val(startTimeStr);
     $("#mes").html("");
 }
+
+function showInfo(id,staffId,staffName,birthdayStr,identityId,phone,email,nation,currentAdress,nativePlace,politicalBackground,startTimeStr) {
+    $('#add-modal').modal('show');
+    $("#save").hide();
+    $("#title-candle").html("员工信息");
+    $('#id').val(id);
+    $('#staffId').val(staffId);
+    $('#staffName').val(staffName);
+    $('#identityId').val(identityId);
+    $('#birthdayStr').val(birthdayStr);
+    $('#phone').val(phone);
+    $('#email').val(email);
+    $('#nation').val(nation);
+    $('#currentAdress').val(currentAdress);
+    $('#nativePlace').val(nativePlace);
+    $('#politicalBackground').val(politicalBackground);
+    $('#startTimeStr').val(startTimeStr);
+    $("input,select").attr("disabled","disabled");
+    $("#mes").html("");
+}
+
+
 

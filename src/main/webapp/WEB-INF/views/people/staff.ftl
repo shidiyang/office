@@ -28,7 +28,8 @@
                     <#list page.rows as row>
                     <tr class="gradeA">
                         <td>${(row.staffId)!}</td>
-                        <td>${(row.staffName)!}</td>
+                        <td><span style="cursor: pointer;" onclick="showInfo(${(row.id)!},'${(row.staffId)!}','${(row.staffName)!}','${(row.birthday?date)!}','${(row.identityId)!}','${(row.phone)!}','${(row.email)!}','${(row.nation)!}','${(row.currentAdress)!}','${(row.nativePlace)!}','${(row.politicalBackground)!}','${(row.startTime?date)!}')"
+                                  class="badge badge-info"><i class="fa fa-edit"></i>${(row.staffName)!}</span></td>
                         <td>
                         <#if row.sex == 0>
                             女
@@ -38,7 +39,8 @@
                         <td>${(row.phone)!}</td>
                         <td>${(row.email)!}</td>
                         <td>${(row.department.departmentName)!}</td>
-                        <td style="text-align:center" ><span style="cursor: pointer;" onclick="updat(${(row.id)!},'${(row.departmentName)!}','${(row.description)!}')" class="badge badge-info"><i class="fa fa-edit"></i>修改</span>
+                        <td style="text-align:center" ><span style="cursor: pointer;" onclick="updat(${(row.id)!},'${(row.staffId)!}','${(row.staffName)!}','${(row.birthday?date)!}','${(row.identityId)!}','${(row.phone)!}','${(row.email)!}','${(row.nation)!}','${(row.currentAdress)!}','${(row.nativePlace)!}','${(row.politicalBackground)!}','${(row.startTime?date)!}')"
+                                                             class="badge badge-info"><i class="fa fa-edit"></i>修改</span>
                             <span style="cursor: pointer;" onclick="del(${row.id})" class="badge badge-info"><i class="fa fa-edit"></i>删除</span></td>
                     </tr>
                     </#list>
@@ -62,7 +64,7 @@
                 <form method="post" id="add-form" autocomplete="off" class="form-horizontal">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">员工新增/修改</h4>
+                        <h4 class="modal-title" id="title-candle">员工新增/修改</h4>
                     </div>
                     <div class="modal-body">
                         <table style="width:100%;" align="center">
@@ -107,9 +109,7 @@
                                     <span style="padding-right:25px;">生日:</span>
                                 </td>
                                 <td>
-                                    <div  data-date="12-02-2012" class="input-append date datepicker" id="birthday">
-                                        <input type="text" value="12-02-2012"  data-date-format="mm-dd-yyyy" class="span11"  >
-                                        <span class="add-on"><i class="icon-th"></i></span> </div>
+                                    <span><input type="text"  id="birthdayStr" name="birthdayStr" class="input-append date datepicker"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -179,7 +179,7 @@
                                     <span style="padding-right:25px;">入职时间:</span>
                                 </td>
                                 <td>
-                                    <#--<input type="text" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11">-->
+                                    <span><input type="text"  id="startTimeStr" name="startTimeStr" class="input-append date datepicker"></span>
                                 </td>
                             </tr>
                             <tr><td class="text-center" colspan="2"><span id="mes"></span></td></tr>
@@ -198,5 +198,7 @@
         </div>
     </div>
 </div>
-<script src="/office/asset/js/people/department.js"></script>
+<script type="text/javascript">
+</script>
+<script src="/office/asset/js/people/staff.js"></script>
 </@html>
