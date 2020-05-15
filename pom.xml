@@ -14,7 +14,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.spring.version>4.3.0.RELEASE</project.spring.version>
     <hotel.soa.client.version>1.12.5</hotel.soa.client.version>
-    <jackson.version>2.5.4</jackson.version>
+    <jackson.version>2.11.0</jackson.version>
   </properties>
   <!-- maven release plugins -->
   <build>
